@@ -1,0 +1,45 @@
+### Price of pipe elements
+
+Описание 
+Веб-приложение, которое позволяет загружать данные о номенклатуре технологических трубопроводов из
+CSV-файлов в базу данных и осуществлятьпоиск стоимости изделий по различным параметрам
+
+Установка
+Для разворачивания проекта на локальной машине:
+
+Клонируйте репозиторий:
+```
+git clone https://github.com/gregorchik/price_of_pipe_el.git
+```
+
+Разверните и активируйте виртуальную среду:
+```
+python -m venv .venv
+source venv/Scripts/activate или .\venv\Scripts\activate
+```
+
+Перейдите в директорию "price_of_pipe_el"
+```
+cd price_of_pipe_el
+```
+
+Установите зависимости в активированной виртуальной среде:
+```
+pip install -r requirements.txt
+```
+
+Сделайте и выполните миграции:
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+Создайте суперпользователя:
+```
+python manage.py createsuperuser
+```
+
+Запустите проект:
+```
+python manage.py runserver
+```
