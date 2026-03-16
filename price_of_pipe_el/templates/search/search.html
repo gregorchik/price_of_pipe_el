@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Список
+{% endblock %}
+{% block content %}
+
+<a class="nav-link" href="{% url 'search:SearchPageView' %}">Все товары</a>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Поиск и фильтры</h5>
+        
+        <form method="get" class="row g-3">
+            <div class="col-md-6 col-lg-3">
+                <input type="text" class="form-control" name="category" placeholder="Категория" value="{{ request.GET.category }}">
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <input type="text" class="form-control" name="diameter_dn" placeholder="Диаметр DN" value="{{ request.GET.diameter_dn }}">
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <input type="text" class="form-control" name="pressure_pn" placeholder="Давление PN" value="{{ request.GET.pressure_pn }}">
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="material" placeholder="Материал" value="{{ request.GET.material }}">
+                    <button type="submit" class="btn btn-success">Применить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Трубы</h5>
+            <p class="card-text">
+                <table class="table">
+                    <thread>
+                        <tr>
+                            <th cope="col">Категория</th>
+                            <th cope="col">Артикул</th>
+                            <th cope="col">Диаметр</th>
+                            <th cope="col">Давление</th>
+                            <th cope="col">Материал</th>
+                            <th cope="col">Цена</th>
+                        </tr>
+                    </thread>
+                        {% if page_obj %}
+                        {% for products in page_obj %}
+                        {% ifchanged %}
+                        <tbody>
+                            <th>{{ products.category }}</th>
+                            <th>{{ products.designation }}</th>
+                            <th>{{ products.diameter_dn }}</th>
+                            <th>{{ products.pressure_pn }}</th>
+                            <th>{{ products.material }}</th>
+                            <th>{{ products.price }}</th>
+                        {% endifchanged %}
+                        {% endfor %}
+                        {% else %}
+                        <h3>Результатов нет! Возможно вы допустили ошибку при поиске.</h3>
+                        {% endif %}
+                    </tbody>
+                    </table>
+                    </p>
+                </div>
+            </div>
+        </div>
+     
+</div>
+{% include "includes/paginator.html" %}
+{% endblock %}
+
+
+
+
+
+
